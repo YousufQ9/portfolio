@@ -1,0 +1,45 @@
+.projects-filter-section {
+  padding-top: 0;
+}
+
+.projects-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.projects-filter__btn {
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-hairline-strong);
+  background: var(--color-paper-raised);
+  color: var(--color-ink-soft);
+  cursor: pointer;
+  transition: all var(--dur-fast) var(--ease-out);
+  white-space: nowrap;
+}
+
+.projects-filter__btn:hover {
+  border-color: var(--color-ink);
+  color: var(--color-ink);
+}
+
+.projects-filter__btn--active {
+  background: var(--color-ink);
+  border-color: var(--color-ink);
+  color: var(--color-inverse-ink);
+}
+
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.projects-empty {
+  text-align: center;
+  padding: var(--space-8) 0;
+  color: var(--color-ink-soft);
+}

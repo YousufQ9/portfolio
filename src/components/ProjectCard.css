@@ -1,0 +1,111 @@
+.pcard {
+  display: grid;
+  grid-template-columns: 200px 1fr auto;
+  gap: var(--space-6);
+  align-items: center;
+  padding: var(--space-5);
+  background: var(--color-paper-raised);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  color: inherit;
+  transition: transform var(--dur-med) var(--ease-out), border-color var(--dur-med) var(--ease-out), box-shadow var(--dur-med) var(--ease-out);
+  box-shadow: var(--shadow-card);
+}
+
+.pcard:hover {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.pcard__thumb {
+  width: 200px;
+  height: 130px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-accent-soft);
+  flex-shrink: 0;
+}
+
+.pcard__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pcard__thumb-placeholder {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.pcard__body {
+  min-width: 0;
+}
+
+.pcard__tags {
+  display: flex;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.pcard__title {
+  font-size: var(--fs-h3);
+  margin-bottom: var(--space-2);
+  color: var(--color-ink);
+}
+
+.pcard__desc {
+  font-size: var(--fs-small);
+  margin-bottom: var(--space-3);
+  max-width: 62ch;
+  color: var(--color-ink-soft);
+}
+
+.pcard__tools {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-3);
+}
+
+.pcard__key-result {
+  font-size: var(--fs-small);
+  color: var(--color-ink);
+  margin: 0;
+  font-family: var(--font-mono);
+}
+
+.pcard__key-result-label {
+  color: var(--color-signal);
+  font-weight: 600;
+}
+
+.pcard__chevron {
+  color: var(--color-ink-soft);
+  transition: transform var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+  align-self: center;
+}
+
+.pcard:hover .pcard__chevron {
+  transform: translateX(3px);
+  color: var(--color-accent);
+}
+
+@media (max-width: 760px) {
+  .pcard {
+    grid-template-columns: 1fr;
+  }
+
+  .pcard__thumb {
+    width: 100%;
+    height: 160px;
+  }
+
+  .pcard__chevron {
+    display: none;
+  }
+}

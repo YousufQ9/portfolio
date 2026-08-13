@@ -1,0 +1,78 @@
+/* ============================================================================
+   DESIGN TOKENS
+   ----------------------------------------------------------------------------
+   Every color, font, spacing unit, and radius used across the site is defined
+   here as a CSS custom property. To restyle the whole site (e.g. change the
+   accent color), edit the values in :root — you do not need to touch any
+   component file.
+   ============================================================================ */
+
+:root {
+  /* ---- Color: paper & ink base with two restrained accents ---- */
+  --color-ink: #12151b;          /* primary text / near-black */
+  --color-ink-soft: #4a5160;     /* secondary text */
+  --color-paper: #faf9f6;        /* page background */
+  --color-paper-raised: #ffffff; /* card background */
+  --color-hairline: #e2e0da;     /* borders, dividers */
+  --color-hairline-strong: #cfccc3;
+
+  --color-accent: #2e5eaa;       /* analytical blue — links, CTAs, primary data color */
+  --color-accent-soft: #e7edf7;  /* tinted backgrounds for accent elements */
+  --color-accent-dark: #1f4381;
+
+  --color-signal: #c17a2e;       /* warm amber — used sparingly for key metrics/highlights */
+  --color-signal-soft: #f7ecdd;
+
+  --color-success: #3a7d5c;
+  --color-inverse-ink: #f3f1ea;
+  --color-inverse-paper: #12151b;
+
+  /* ---- Typography ---- */
+  --font-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+
+  --fs-hero: clamp(1.9rem, 2.6vw + 1rem, 3rem);
+  --fs-h1: clamp(2.1rem, 3vw + 1rem, 3rem);
+  --fs-h2: clamp(1.6rem, 2vw + 0.8rem, 2.2rem);
+  --fs-h3: clamp(1.25rem, 1vw + 0.9rem, 1.55rem);
+  --fs-body-lg: 1.15rem;
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-micro: 0.75rem;
+
+  /* ---- Spacing scale ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+
+  /* ---- Layout ---- */
+  --content-max: 1120px;
+  --content-narrow: 760px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+
+  /* ---- Motion ---- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 150ms;
+  --dur-med: 320ms;
+
+  /* ---- Shadow ---- */
+  --shadow-card: 0 1px 2px rgba(18, 21, 27, 0.04), 0 8px 24px -12px rgba(18, 21, 27, 0.12);
+  --shadow-card-hover: 0 2px 4px rgba(18, 21, 27, 0.06), 0 16px 36px -14px rgba(18, 21, 27, 0.18);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur-med: 0ms;
+  }
+}
