@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#12151b" />
+
+    <title>Mohammad Yousuf Qureshi — Data Analyst</title>
+    <meta
+      name="description"
+      content="Data Analyst with an M.S. in Analytics from Georgia Tech. Forecasting, machine learning, NLP, and BI dashboards built on real data — including a 45-million-row industry project with Lufthansa Group."
+    />
+
+    <meta property="og:title" content="Mohammad Yousuf Qureshi — Data Analyst" />
+    <meta
+      property="og:description"
+      content="Data Analyst with an M.S. in Analytics from Georgia Tech. Forecasting, machine learning, NLP, and BI dashboards built on real data."
+    />
+    <meta property="og:type" content="website" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Mohammad Yousuf Qureshi — Data Analyst" />
+    <meta
+      name="twitter:description"
+      content="Data Analyst with an M.S. in Analytics from Georgia Tech. Forecasting, machine learning, NLP, and BI dashboards built on real data."
+    />
+
+    <!--
+      Pairs with public/404.html — see the detailed comment in that file.
+      This script runs first, before React loads, and reverses the
+      redirect encoding so the URL bar shows the real path (e.g.
+      "/portfolio/experience") and React Router renders the right page.
+      Do not remove this if you are hosting on GitHub Pages.
+    -->
+    <script>
+      (function (l) {
+        if (l.search[1] === "/") {
+          var decoded = l.search
+            .slice(1)
+            .split("&")
+            .map(function (s) {
+              return s.replace(/~and~/g, "&");
+            })
+            .join("?");
+          window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
+        }
+      })(window.location);
+    </script>
+    <script type="module" crossorigin src="/portfolio/assets/index-C4a0eZqv.js"></script>
+    <link rel="stylesheet" crossorigin href="/portfolio/assets/index-BkL4bx6x.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
