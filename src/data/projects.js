@@ -69,7 +69,7 @@ export const projects = [
     period: "Spring 2026",
     context: "Georgia Tech Applied Analytics Practicum · Industry partner: Lufthansa Group (SWISS International Air Lines) · NDA project, 3-person team, pipeline lead",
     keyResult: "AUC = 0.842 on high-signal markets, 9× lift over baseline",
-    thumbnail:  "/images/projects/socialmediathumb.jpg",
+    thumbnail:  "images/projects/socialmediathumb.jpg",
     links: {
       github: "https://github.com/YousufQ9/reddit-flight-demand-signals",
       dashboard: null,
@@ -137,7 +137,7 @@ export const projects = [
     period: "Fall 2025",
     context: "CSE 6242 - Data and Visual Analytics, Georgia Tech · 5-person team course project",
     keyResult: "4.56 / 5 average user rating across 18 responses, 130+ public dashboard views",
-    thumbnail:  "/images/projects/dashboardthumb.jpg",
+    thumbnail:  "images/projects/dashboardthumb.jpg",
     links: {
       github: "https://github.com/YousufQ9/tariff_impact_dashboard",
       dashboard: null,
@@ -202,7 +202,7 @@ export const projects = [
     period: "Fall 2025",
     context: "ISYE 6402 - Time Series Analysis, Georgia Tech · 3-person team, team lead",
     keyResult: "2.67% MAPE forecasting total vehicle sales over a 2-year holdout",
-    thumbnail:  "/images/projects/vehiclesalesthumb.jpg",
+    thumbnail:  "images/projects/vehiclesalesthumb.jpg",
     links: {
       github: null,
       dashboard: null,
@@ -269,7 +269,7 @@ export const projects = [
     period: "Spring 2026",
     context: "CS 7643 - Deep Learning, Georgia Tech · 3-person team",
     keyResult: "+43% CIDEr and +23% CheXbert F1 from clinically guided decoding vs. vanilla Transformer",
-    thumbnail:  "/images/projects/lstmthumb.jpg",
+    thumbnail:  "images/projects/lstmthumb.jpg",
     links: {
       github: "https://github.com/YousufQ9/dl-cxr-report-gen",
       dashboard: null,
@@ -336,7 +336,7 @@ export const projects = [
     period: "Spring 2025",
     context: "ISYE 6740 - Computational Data Analysis, Georgia Tech · Individual course project",
     keyResult: "ARIMA forecast MAE of 1.24% (RMSE 1.40%) on monthly café sales",
-    thumbnail:  "/images/projects/cafesalesthumb.jpg",
+    thumbnail:  "images/projects/cafesalesthumb.jpg",
     links: {
       github: null,
       dashboard: null,
