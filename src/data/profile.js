@@ -37,7 +37,14 @@ export const profile = {
   //    filename below to match whatever you name it).
   // 3. Set resumeAvailable to true. The "View résumé" button on the
   //    homepage will then appear automatically and open the PDF in a new tab.
-  resumeUrl: "/resume/Yousuf-Qureshi-Resume.pdf",
+  //
+  // IMPORTANT: this path is intentionally written WITHOUT a leading slash
+  // ("resume/..." not "/resume/..."). It gets combined with Vite's BASE_URL
+  // in Home.jsx before being used as a link. A leading slash would make the
+  // browser look for the file at the domain root (e.g.
+  // yousufq9.github.io/resume/...) instead of under the GitHub Pages repo
+  // path (yousufq9.github.io/portfolio/resume/...), which 404s.
+  resumeUrl: "resume/Yousuf-Qureshi-Resume.pdf",
   resumeAvailable: true,
 
   phone: "+92 311 2563078",

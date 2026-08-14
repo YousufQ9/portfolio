@@ -44,7 +44,12 @@ export default function Home() {
                 View experience
               </Link>
               {profile.resumeAvailable && (
-                <a href={profile.resumeUrl} target="_blank" rel="noreferrer" className="btn btn-secondary">
+                <a
+                  href={`${import.meta.env.BASE_URL}${profile.resumeUrl}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn btn-secondary"
+                >
                   View résumé
                 </a>
               )}

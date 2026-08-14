@@ -46,7 +46,7 @@ export default function Footer() {
                 {profile.githubLabel}
               </a>
               {profile.resumeAvailable && (
-                <a href={profile.resumeUrl} target="_blank" rel="noreferrer">
+                <a href={`${import.meta.env.BASE_URL}${profile.resumeUrl}`} target="_blank" rel="noreferrer">
                   Download résumé
                 </a>
               )}
