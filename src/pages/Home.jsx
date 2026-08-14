@@ -92,7 +92,7 @@ export default function Home() {
             <p className="eyebrow">Toolkit</p>
             <h2>Technologies I actually use, grouped by what they're for</h2>
             <p className="section-header__sub">
-              Every tool listed here shows up in a real project below — not a generic skills list.
+              Every tool listed here shows up in a real project below - not a generic skills list.
             </p>
           </div>
           <SkillsGrid />
@@ -106,7 +106,7 @@ export default function Home() {
             <p className="eyebrow">Selected work</p>
             <h2>A few projects that show the range</h2>
             <p className="section-header__sub">
-              From a 45-million-row NDA industry project to a published Tableau dashboard —
+              From a 45-million-row NDA industry project to a published Tableau dashboard -
               each one links to a full breakdown of the problem, the data, and the results.
             </p>
           </div>
