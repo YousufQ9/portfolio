@@ -562,7 +562,7 @@ export const projects = [
     period: "Spring 2025",
     context: "ISYE 6644 - Simulation & Modeling, Georgia Tech · Individual course project",
     keyResult: "Greedy strategy: 157.86 avg score (SD 53.55) vs. Random: 45.98 avg, across 100,000 simulated games",
-    thumbnail:  "/images/projects/yahtzeethumb.jpg",
+    thumbnail:  "images/projects/yahtzeethumb.jpg",
     links: {
       github: null,
       dashboard: null,
