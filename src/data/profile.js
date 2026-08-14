@@ -140,7 +140,7 @@ export const education = [
     institution: "Texas A&M University at Qatar",
     degree: "B.S. in Mechanical Engineering",
     field: null,
-    dates: "2016 – May 2020",
+    dates: "Aug 2016 – May 2020",
     detail: "Magna Cum Laude · CGPA: 3.74 / 4.0",
     coursework: [],
     honors: ["Tau Beta Pi", "Pi Tau Sigma", "Dean's Honor Roll"],

@@ -50,7 +50,7 @@ export default function Home() {
                   rel="noreferrer"
                   className="btn btn-secondary"
                 >
-                  View résumé
+                  View Résumé
                 </a>
               )}
             </div>
