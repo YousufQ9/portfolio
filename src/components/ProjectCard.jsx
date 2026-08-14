@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { withBase } from "../utils/withBase";
 import "./ProjectCard.css";
 
 // A project summary card for the /projects grid. Clicking anywhere on the
@@ -9,7 +10,7 @@ export default function ProjectCard({ project }) {
     <Link to={`/projects/${project.slug}`} className="pcard">
       <div className="pcard__thumb" aria-hidden="true">
         {project.thumbnail ? (
-          <img src={project.thumbnail} alt="" loading="lazy" />
+          <img src={withBase(project.thumbnail)} alt="" loading="lazy" />
         ) : (
           <ThumbPlaceholder seed={project.slug} />
         )}

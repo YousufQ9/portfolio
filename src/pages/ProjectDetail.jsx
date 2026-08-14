@@ -1,6 +1,7 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import Seo from "../components/Seo";
 import { projects } from "../data/projects";
+import { withBase } from "../utils/withBase";
 import "./ProjectDetail.css";
 
 // This page renders at /projects/:slug — e.g. /projects/lufthansa-reddit-signals.
@@ -86,7 +87,7 @@ export default function ProjectDetail() {
         {project.thumbnail && (
           <div className="project-detail__hero-image">
             <div className="container">
-              <img src={project.thumbnail} alt={`${project.title} preview`} />
+              <img src={withBase(project.thumbnail)} alt={`${project.title} preview`} />
             </div>
           </div>
         )}
@@ -165,7 +166,7 @@ export default function ProjectDetail() {
               <div className="project-detail__screenshots">
                 {project.screenshots.map((shot, i) => (
                   <figure className="project-detail__screenshot" key={i}>
-                    <img src={shot.src} alt={shot.caption || `${project.title} screenshot ${i + 1}`} loading="lazy" />
+                    <img src={withBase(shot.src)} alt={shot.caption || `${project.title} screenshot ${i + 1}`} loading="lazy" />
                     {shot.caption && <figcaption>{shot.caption}</figcaption>}
                   </figure>
                 ))}
