@@ -73,7 +73,7 @@ export const projects = [
     links: {
       github: "https://github.com/YousufQ9/reddit-flight-demand-signals",
       dashboard: null,
-      report: null,
+      report: "reports/reportredacted.pdf",
       dataset: null,
     },
     problem:
@@ -493,61 +493,7 @@ export const projects = [
     screenshots: [],
   },
 
-  // ==========================================================================
-  // 8. Hajj Crowd Safety Analytics Case Study
-  // ==========================================================================
-  {
-    slug: "hajj-crowd-analytics-case-study",
-    title: "Using Analytics to Safely Manage Large-Scale Crowds at the Hajj",
-    shortDescription:
-      "A case study proposing a four-model analytics pipeline - clustering, design of experiments, simulation, and real-time logistic regression - for crowd safety at an event of up to 4 million people.",
-    category: ["Simulation", "Machine Learning"],
-    tools: ["Clustering", "Design of Experiments", "Stochastic Simulation", "Logistic Regression"],
-    period: "Fall 2024",
-    context: "ISYE 6501 - Introduction to Analytics Modeling, Georgia Tech · Individual course project",
-    keyResult: "A four-step integrated analytics pipeline spanning pre-event planning to real-time deployment",
-    thumbnail: null,
-    links: {
-      github: null,
-      dashboard: null,
-      report: null,
-      dataset: null,
-    },
-    problem:
-      "The Hajj pilgrimage brings up to 4 million people to Makkah, Saudi Arabia, each year, creating one of the world's hardest large-scale crowd safety problems. This was a proposal-style case study requiring independent analytical reasoning - choosing and justifying which models to combine, rather than researching what is actually implemented on the ground.",
-    data: {
-      source: "Hypothetical / illustrative - this was a proposal exercise, not an analysis of a real operational dataset",
-      size: null,
-      variables: ["Historical crowd movement / GPS data (proposed)", "Live crowd density and flow rate (proposed)"],
-      limitations:
-        "As a proposal-style case study, the project reasoned about what data would be required and how models should be sequenced, rather than fitting models to an actual crowd dataset.",
-    },
-    methodology: [
-      "Step 1 - Clustering: identify high-density crowd 'hotspots' from historical movement/GPS data as a spatial risk baseline",
-      "Step 2 - Design of Experiments: fractional factorial DOE to efficiently test intervention combinations (signage, diversions, announcements, staff, notifications)",
-      "Step 3 - Stochastic Simulation: model crowd-behavior randomness (e.g. via Arena) to validate interventions before the event",
-      "Step 4 - Real-time Logistic Regression: live model updating every few minutes on crowd density/flow to predict overcrowding or stampede probability",
-    ],
-    dataCleaning: null,
-    analysis: [
-      "The proposed pipeline was structured as four sequential steps, each feeding the next. Clustering on historical movement and GPS data would identify high-density hotspots, forming a spatial risk baseline before any interventions are designed.",
-      "A fractional factorial Design of Experiments approach was proposed to test combinations of crowd-control interventions - signage, diversions, announcements, on-ground staff, push notifications - across diverse pilgrim demographics, without the impossible cost of exhaustively testing every combination.",
-      "Stochastic simulation (using a tool such as Arena) was proposed to model the inherent randomness of human crowd behavior and validate the chosen intervention strategies under multiple scenarios before the actual event takes place.",
-      "For live deployment during the event itself, a logistic regression model updating every few minutes on real-time crowd density and flow-rate data was proposed to predict the probability of overcrowding or stampede incidents and trigger proactive responses.",
-      "Beyond just proposing four models, the report specifically reasoned through data requirements, collection methods, and refresh cadence for each step, and articulated how the four stages integrate into one coherent, operationally viable system rather than four disconnected analyses.",
-    ],
-    findings: [
-      "Different modeling techniques are suited to different timescales of the same safety problem: clustering and DOE for pre-event planning, simulation for pre-event validation, and logistic regression for real-time in-event response.",
-      "A workable crowd-safety analytics system needs to combine spatial, experimental, and real-time modeling approaches - no single model type addresses the full problem.",
-    ],
-    recommendations: [
-      "Sequence the four proposed models as a pipeline (clustering → DOE → simulation → real-time regression) rather than deploying any single model in isolation.",
-      "Prioritize the real-time logistic regression component for operational value during the event itself, since it's the only stage that can trigger a proactive live response.",
-    ],
-    results:
-      "This was an analytical reasoning exercise rather than a deployed system, so there is no live performance metric to report. The demonstrated outcome is the coherence and technical soundness of the proposed four-model pipeline and the report's reasoning about data requirements and model refresh cadence at each stage.",
-    screenshots: [],
-  },
+  
 
   // ==========================================================================
   // 9. Yahtzee Monte Carlo Simulation
@@ -617,7 +563,7 @@ export const projects = [
     period: "May 2026",
     context: "Independent project",
     keyResult: "Full input/output guardrail architecture with per-request observability tracing",
-    thumbnail: null,
+    thumbnail: "images/projects/safedocthumb.jpg",
     links: {
       github: "https://github.com/YousufQ9/safedoc-qa",
       dashboard: null,
@@ -670,7 +616,7 @@ export const projects = [
     period: "May 2026",
     context: "Independent project",
     keyResult: "Automated confidence-based retry loop when synthesis confidence falls below 0.7",
-    thumbnail: null,
+    thumbnail: "images/projects/analystthumb.jpg",
     links: {
       github: "https://github.com/YousufQ9/analyst-agent",
       dashboard: null,
@@ -709,6 +655,62 @@ export const projects = [
     recommendations: null,
     results:
       "The result is a working multi-agent research pipeline with automated self-correction and human oversight built in from the start, served as both an API and an interactive frontend - the kind of production-shaped agentic system that goes beyond a single LangChain call. Code is available on GitHub.",
+    screenshots: [],
+  },
+
+  // ==========================================================================
+  // 8. Hajj Crowd Safety Analytics Case Study
+  // ==========================================================================
+  {
+    slug: "hajj-crowd-analytics-case-study",
+    title: "Using Analytics to Safely Manage Large-Scale Crowds at the Hajj",
+    shortDescription:
+      "A case study proposing a four-model analytics pipeline - clustering, design of experiments, simulation, and real-time logistic regression - for crowd safety at an event of up to 4 million people.",
+    category: ["Simulation", "Machine Learning"],
+    tools: ["Clustering", "Design of Experiments", "Stochastic Simulation", "Logistic Regression"],
+    period: "Fall 2024",
+    context: "ISYE 6501 - Introduction to Analytics Modeling, Georgia Tech · Individual course project",
+    keyResult: "A four-step integrated analytics pipeline spanning pre-event planning to real-time deployment",
+    thumbnail: null,
+    links: {
+      github: null,
+      dashboard: null,
+      report: null,
+      dataset: null,
+    },
+    problem:
+      "The Hajj pilgrimage brings up to 4 million people to Makkah, Saudi Arabia, each year, creating one of the world's hardest large-scale crowd safety problems. This was a proposal-style case study requiring independent analytical reasoning - choosing and justifying which models to combine, rather than researching what is actually implemented on the ground.",
+    data: {
+      source: "Hypothetical / illustrative - this was a proposal exercise, not an analysis of a real operational dataset",
+      size: null,
+      variables: ["Historical crowd movement / GPS data (proposed)", "Live crowd density and flow rate (proposed)"],
+      limitations:
+        "As a proposal-style case study, the project reasoned about what data would be required and how models should be sequenced, rather than fitting models to an actual crowd dataset.",
+    },
+    methodology: [
+      "Step 1 - Clustering: identify high-density crowd 'hotspots' from historical movement/GPS data as a spatial risk baseline",
+      "Step 2 - Design of Experiments: fractional factorial DOE to efficiently test intervention combinations (signage, diversions, announcements, staff, notifications)",
+      "Step 3 - Stochastic Simulation: model crowd-behavior randomness (e.g. via Arena) to validate interventions before the event",
+      "Step 4 - Real-time Logistic Regression: live model updating every few minutes on crowd density/flow to predict overcrowding or stampede probability",
+    ],
+    dataCleaning: null,
+    analysis: [
+      "The proposed pipeline was structured as four sequential steps, each feeding the next. Clustering on historical movement and GPS data would identify high-density hotspots, forming a spatial risk baseline before any interventions are designed.",
+      "A fractional factorial Design of Experiments approach was proposed to test combinations of crowd-control interventions - signage, diversions, announcements, on-ground staff, push notifications - across diverse pilgrim demographics, without the impossible cost of exhaustively testing every combination.",
+      "Stochastic simulation (using a tool such as Arena) was proposed to model the inherent randomness of human crowd behavior and validate the chosen intervention strategies under multiple scenarios before the actual event takes place.",
+      "For live deployment during the event itself, a logistic regression model updating every few minutes on real-time crowd density and flow-rate data was proposed to predict the probability of overcrowding or stampede incidents and trigger proactive responses.",
+      "Beyond just proposing four models, the report specifically reasoned through data requirements, collection methods, and refresh cadence for each step, and articulated how the four stages integrate into one coherent, operationally viable system rather than four disconnected analyses.",
+    ],
+    findings: [
+      "Different modeling techniques are suited to different timescales of the same safety problem: clustering and DOE for pre-event planning, simulation for pre-event validation, and logistic regression for real-time in-event response.",
+      "A workable crowd-safety analytics system needs to combine spatial, experimental, and real-time modeling approaches - no single model type addresses the full problem.",
+    ],
+    recommendations: [
+      "Sequence the four proposed models as a pipeline (clustering → DOE → simulation → real-time regression) rather than deploying any single model in isolation.",
+      "Prioritize the real-time logistic regression component for operational value during the event itself, since it's the only stage that can trigger a proactive live response.",
+    ],
+    results:
+      "This was an analytical reasoning exercise rather than a deployed system, so there is no live performance metric to report. The demonstrated outcome is the coherence and technical soundness of the proposed four-model pipeline and the report's reasoning about data requirements and model refresh cadence at each stage.",
     screenshots: [],
   },
 ];
