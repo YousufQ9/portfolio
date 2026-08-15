@@ -135,6 +135,8 @@ export const education = [
       "Database Systems",
       "Data Analytics in Business",
     ],
+    degreeUrl: "education/gtechdegree.pdf",
+    transcriptUrl: "education/gtechtranscript.pdf",
   },
   {
     institution: "Texas A&M University at Qatar",
@@ -142,8 +144,19 @@ export const education = [
     field: null,
     dates: "Aug 2016 – May 2020",
     detail: "Magna Cum Laude · CGPA: 3.74 / 4.0",
-    coursework: [],
+    coursework: [
+      "Thermodynamics",
+      "Heat Transfer",
+      "Control Systems",
+      "Mechatronics",
+      "Finite Element Analysis",
+      "Materials in Design",
+      "Geometric Modeling",
+      "Ethics in Engineering",
+    ],
     honors: ["Tau Beta Pi", "Pi Tau Sigma", "Dean's Honor Roll"],
+    degreeUrl: "education/tamudegree.pdf",
+    transcriptUrl: "education/tamutranscript.pdf",
   },
 ];
 

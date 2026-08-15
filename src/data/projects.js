@@ -73,7 +73,7 @@ export const projects = [
     links: {
       github: "https://github.com/YousufQ9/reddit-flight-demand-signals",
       dashboard: null,
-      report: "reports/reportredacted.pdf",
+      report: "reports/RedditBookingreportredacted.pdf",
       dataset: null,
     },
     problem:
@@ -141,7 +141,7 @@ export const projects = [
     links: {
       github: "https://github.com/YousufQ9/tariff_impact_dashboard",
       dashboard: null,
-      report: null,
+      report: "reports/Tariffreport.pdf",
       dataset: null,
     },
     problem:
@@ -206,7 +206,7 @@ export const projects = [
     links: {
       github: null,
       dashboard: null,
-      report: null,
+      report: "reports/Vehiclereport.pdf",
       dataset: null,
     },
     problem:
@@ -273,7 +273,7 @@ export const projects = [
     links: {
       github: "https://github.com/YousufQ9/dl-cxr-report-gen",
       dashboard: null,
-      report: null,
+      report: "reports/LSTMreport.pdf",
       dataset: null,
     },
     problem:
@@ -340,7 +340,7 @@ export const projects = [
     links: {
       github: null,
       dashboard: null,
-      report: null,
+      report: "reports/cafesalesreport.pdf",
       dataset: "Kaggle café sales dataset",
     },
     problem:
@@ -512,7 +512,7 @@ export const projects = [
     links: {
       github: null,
       dashboard: null,
-      report: null,
+      report: "reports/Yahtzeereport.pdf",
       dataset: null,
     },
     problem:

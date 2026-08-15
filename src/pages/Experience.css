@@ -258,6 +258,13 @@
   margin-bottom: var(--space-3);
 }
 
+.education-card__docs {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-3);
+}
+
 .education-card__honors {
   display: flex;
   gap: var(--space-2);

@@ -3,6 +3,7 @@ import Seo from "../components/Seo";
 import { experience, earlierExperience } from "../data/experience";
 import { education } from "../data/profile";
 import "./Experience.css";
+import { withBase } from "../utils/withBase";
 
 export default function Experience() {
   return (
@@ -117,6 +118,21 @@ export default function Experience() {
                 </div>
 
                 {ed.detail && <p className="education-card__detail">{ed.detail}</p>}
+
+                {(ed.degreeUrl || ed.transcriptUrl) && (
+                  <div className="education-card__docs">
+                    {ed.degreeUrl && (
+                      <a href={withBase(ed.degreeUrl)} target="_blank" rel="noreferrer" className="btn btn-secondary btn-small">
+                        View degree
+                      </a>
+                    )}
+                    {ed.transcriptUrl && (
+                      <a href={withBase(ed.transcriptUrl)} target="_blank" rel="noreferrer" className="btn btn-secondary btn-small">
+                        View transcript
+                      </a>
+                    )}
+                  </div>
+                )}
 
                 {ed.honors && ed.honors.length > 0 && (
                   <div className="education-card__honors">
