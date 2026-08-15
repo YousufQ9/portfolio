@@ -67,7 +67,11 @@ export default function ProjectDetail() {
                   </a>
                 )}
                 {project.links.report && (
-                  <a href={project.links.report} target="_blank" rel="noreferrer" className="btn btn-secondary btn-small">
+                    <a href={project.links.report.startsWith("http") ? project.links.report : withBase(project.links.report)}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn btn-secondary btn-small"
+                  >
                     View report
                   </a>
                 )}

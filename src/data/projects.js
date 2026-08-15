@@ -393,7 +393,7 @@ export const projects = [
     period: "Spring 2025",
     context: "CS 6400 - Database Systems Concepts and Design, Georgia Tech · Team project (Team 028)",
     keyResult: "Full CRUD application with role-based access control and 5 executive reports",
-    thumbnail: null,
+    thumbnail: "images/projects/dbthumb.jpg",
     links: {
       github: "https://github.com/YousufQ9/database_stevies_dog_sanctuary",
       dashboard: null,
@@ -451,7 +451,7 @@ export const projects = [
     period: "Fall 2024",
     context: "CSE 6040 - Computing for Data Analysis, Georgia Tech · Extra credit project",
     keyResult: "K-Means segmentation of batting roles + individual win-contribution scoring",
-    thumbnail: null,
+    thumbnail: "images/projects/cricketthumb.jpg",
     links: {
       github: null,
       dashboard: null,

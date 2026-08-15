@@ -185,6 +185,12 @@
   overflow: hidden;
 }
 
+.featured-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .featured-card__placeholder {
   width: 100%;
   height: 100%;

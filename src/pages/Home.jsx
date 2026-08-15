@@ -4,6 +4,7 @@ import DataMotif from "../components/DataMotif";
 import SkillsGrid from "../components/SkillsGrid";
 import { profile, highlights } from "../data/profile";
 import { projects } from "../data/projects";
+import { withBase } from "../utils/withBase";
 import "./Home.css";
 
 // The four strongest, most varied projects for the homepage teaser grid —
@@ -115,7 +116,11 @@ export default function Home() {
             {featured.map((project) => (
               <Link to={`/projects/${project.slug}`} className="featured-card" key={project.slug}>
                 <div className="featured-card__thumb" aria-hidden="true">
-                  <FeaturedThumb seed={project.slug} />
+                  {project.thumbnail ? (
+                    <img src={withBase(project.thumbnail)} alt="" loading="lazy" />
+                  ) : (
+                    <FeaturedThumb seed={project.slug} />
+                  )}
                 </div>
                 <div className="featured-card__body">
                   <div className="featured-card__tags">
