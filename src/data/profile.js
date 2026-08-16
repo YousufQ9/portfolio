@@ -174,7 +174,7 @@ export const certifications = [
     credentialId: null,
     verifyUrl: null,
     // certificateUrl: "certificates/deloitte-data-analytics.pdf",
-    certificateUrl: "certificates/deloitte.pdf",
+    certificateUrl: "certificates/Deloitte.pdf",
   },
   {
     name: "Microsoft Azure Essentials — Professional Certificate",
