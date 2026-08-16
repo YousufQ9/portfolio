@@ -441,6 +441,56 @@ export const projects = [
   },
 
   // ==========================================================================
+  // 14. Dental Office Short-Call List - Upwork Client Project
+  // ==========================================================================
+  {
+    slug: "dental-short-call-list",
+    title: "Digital Short-Call List for a Dental Office",
+    shortDescription:
+      "A freelance Upwork engagement replacing a dental office's paper-based cancellation waitlist with a VBA-driven Excel tool: enter an opening, and it automatically filters and pulls phone numbers of every patient available that day.",
+    category: ["Database Systems"],
+    tools: ["Excel", "VBA", "Macros"],
+    period: "June 2026",
+    context: "Freelance client project, sourced via Upwork · Client-rated 5.0/5 on delivery",
+    keyResult: "Automated same-day patient filtering and phone-number list generation from a single input",
+    thumbnail: null,
+    links: {
+      github: null,
+      dashboard: null,
+      report: null,
+      dataset: null,
+    },
+    problem:
+      "A dental office ran its patient cancellation waitlist ('short-call list') entirely on paper: when a patient couldn't get an appointment for weeks, staff would note their name, phone number, and available days/times, then manually flip through the list and call people one by one whenever an appointment unexpectedly opened up. The client wanted a digital version in Excel that staff with no formula or macro experience could use directly - enter the details of a newly available appointment, and have the tool automatically identify every waitlisted patient free at that day and time, and pull their phone numbers ready for a mass text.",
+    data: {
+      source: "Client-provided patient waitlist data (name, phone number, available days, morning/afternoon availability), entered directly into the tool by office staff",
+      size: "Required to support at least 100 patient entries",
+      variables: ["Patient name", "Phone number", "Available days", "Available time of day (morning/afternoon)"],
+      limitations:
+        "The client explicitly required the solution work natively in Excel 2021 with no AI-generated code, and to be usable by staff with no formula or macro background - which shaped the whole design toward a simple, guided input/output layout rather than anything requiring the end user to understand the underlying logic.",
+    },
+    methodology: [
+      "Requirements gathering directly from the client's own hand-drawn layout and constraints (Excel 2021, no AI-generated code, 100+ patient capacity, non-technical end users)",
+      "Data structure: a patient entry table capturing name, phone number, and availability (days + morning/afternoon)",
+      "Input design: a dedicated section where staff enter the day and time of a newly available appointment",
+      "VBA logic: automatically filter the patient list against the entered appointment slot to surface every matching, available patient",
+      "Output design: auto-generated, comma-separated list of matching patients' phone numbers, ready to paste into a mass-text tool",
+      "Usability: simple add/delete controls for managing patient entries without touching any formulas",
+    ],
+    dataCleaning: null,
+    analysis: [
+      "The core design challenge wasn't the filtering logic itself - it was building it entirely in VBA/macros so that office staff with zero spreadsheet programming experience could operate the tool through simple actions (typing an appointment slot into a designated cell, clicking a button) without ever seeing or needing to understand a formula.",
+      "The client's explicit 'no AI code or scripts' requirement meant the VBA logic had to be written and understood line by line rather than generated and lightly reviewed - a meaningfully different, slower process than typical script-assisted development, and one that mattered to get right since the client would have no way to debug it themselves if something broke.",
+      "Beyond the core filtering feature, the sheet was built with straightforward add/delete controls for the patient list itself, since the client specifically flagged ease of editing as a requirement alongside the core matching logic.",
+    ],
+    findings: null,
+    recommendations: null,
+    results:
+      "The client rated the final delivery 5 out of 5 on Upwork, specifically highlighting that the tool matched their requested design closely, worked correctly without revisions needed, and looked visually polished - and noted they'd return for similar work in the future. The project replaced a fully manual, paper-based process with a single-input automated lookup, directly solving the client's stated problem within the constraints they set (Excel 2021, no AI-generated code, non-technical users).",
+    screenshots: [],
+  },
+
+  // ==========================================================================
   // 12. Padel Tracker - Streamlit Analytics Dashboard
   // ==========================================================================
   {
@@ -555,6 +605,116 @@ export const projects = [
     screenshots: [],
   },
 
+  
+
+  // ==========================================================================
+  // 10. SafeDoc QA - RAG Pipeline with Guardrails (AI / LLM Engineering)
+  // ==========================================================================
+  {
+    slug: "safedoc-qa-rag-pipeline",
+    title: "SafeDoc QA - RAG Pipeline with Guardrails & Observability",
+    shortDescription:
+      "An end-to-end retrieval-augmented generation system built from scratch, with an LLM-as-judge guardrail architecture and full request-level tracing - going beyond a typical RAG demo to address grounding and safety directly.",
+    category: ["AI / LLM Engineering"],
+    tools: ["Python", "LangChain", "ChromaDB", "sentence-transformers", "FastAPI", "Langfuse", "Groq API"],
+    period: "May 2026",
+    context: "Independent project",
+    keyResult: "Full input/output guardrail architecture with per-request observability tracing",
+    thumbnail: "images/projects/safedocthumb.jpg",
+    links: {
+      github: "https://github.com/YousufQ9/safedoc-qa",
+      dashboard: null,
+      report: null,
+      dataset: null,
+    },
+    problem:
+      "Most RAG demos stop at 'retrieve chunks, ask an LLM.' This project asked a harder question: how do you build a document Q&A system where you can trust that (a) it won't answer questions it has no business answering, and (b) every answer it does give is actually grounded in the retrieved source material rather than hallucinated - and how do you make both of those properties observable, not just assumed?",
+    data: {
+      source: "User-uploaded PDF documents (system is document-agnostic by design)",
+      size: null,
+      variables: null,
+      limitations:
+        "As an infrastructure/systems project rather than a data analysis project, there is no dataset in the traditional sense - the 'data' is whatever PDF a user ingests at runtime.",
+    },
+    methodology: [
+      "Ingestion: PDF parsing with recursive character chunking",
+      "Embedding: local sentence-transformer embeddings (all-MiniLM-L6-v2) - no external embedding API dependency",
+      "Retrieval: ChromaDB vector store with Maximal Marginal Relevance (MMR) retrieval",
+      "Generation: grounding-constrained LLM chain using Groq's free-tier Llama 3.1",
+      "Guardrails: LLM-as-judge input rail (blocks off-topic/injected queries) + output rail (checks answer grounding against retrieved context)",
+      "Serving & observability: FastAPI endpoint with full Langfuse tracing (retrieval, prompt, tokens, latency per request)",
+    ],
+    dataCleaning: null,
+    analysis: [
+      "The retrieval layer uses local sentence-transformer embeddings rather than a paid embedding API, keeping the pipeline self-hostable, paired with ChromaDB and MMR retrieval specifically to reduce redundant near-duplicate chunks being returned for a single query.",
+      "The core design decision was building guardrails as two separate LLM-as-judge checks rather than one. An input rail evaluates each incoming query before retrieval even happens, blocking off-topic or prompt-injection attempts. A separate output rail then checks the generated answer against the retrieved context specifically for grounding - catching cases where the LLM's answer drifts from what the source documents actually support, independent of whether the input was legitimate.",
+      "Every request is traced through Langfuse at the span level - retrieval, prompt construction, token usage, and latency are all logged per request, which turns 'is this system behaving correctly' from a manual spot-check into something that can be monitored systematically.",
+    ],
+    findings: [
+      "Separating guardrails into an input-side relevance check and an output-side grounding check catches two genuinely different failure modes that a single combined check would likely miss.",
+      "Full per-request tracing (retrieval, prompt, tokens, latency) is straightforward to add with Langfuse and materially changes how debuggable a RAG system is in practice.",
+    ],
+    recommendations: null,
+    results:
+      "The system is a complete, working RAG pipeline with observable guardrails rather than a proof-of-concept notebook - it runs as a FastAPI service, is traced end-to-end, and specifically targets the grounding and safety gaps that typical RAG tutorials skip over. Code is available on GitHub.",
+    screenshots: [],
+  },
+
+  // ==========================================================================
+  // 11. AnalystAgent - Multi-Agent Research Assistant (AI / LLM Engineering)
+  // ==========================================================================
+  {
+    slug: "analyst-agent-multi-agent-research",
+    title: "AnalystAgent - Multi-Agent Research Assistant",
+    shortDescription:
+      "A 3-node LangGraph research pipeline (Planner → Researcher → Synthesiser) with confidence-based self-correction, human-in-the-loop checkpoints, and a live Streamlit frontend.",
+    category: ["AI / LLM Engineering"],
+    tools: ["Python", "LangGraph", "ChromaDB", "Tavily API", "FastAPI", "Langfuse", "Streamlit"],
+    period: "May 2026",
+    context: "Independent project",
+    keyResult: "Automated confidence-based retry loop when synthesis confidence falls below 0.7",
+    thumbnail: "images/projects/analystthumb.jpg",
+    links: {
+      github: "https://github.com/YousufQ9/analyst-agent",
+      dashboard: null,
+      report: null,
+      dataset: null,
+    },
+    problem:
+      "A single-shot LLM call to 'research and summarize a topic' has no way to notice when its own answer is weak, and no mechanism to try again with a different approach. This project set out to build a multi-agent pipeline that plans its own research, retrieves from two different sources, and - critically - can recognize low-confidence output and automatically retry before handing an answer to the user.",
+    data: {
+      source: "Dual retrieval at query time: live web search (Tavily API) + a ChromaDB RAG index",
+      size: null,
+      variables: null,
+      limitations:
+        "As an agentic systems project, output quality is bounded by the reliability of the underlying web search and LLM calls at query time rather than by a fixed, evaluable dataset.",
+    },
+    methodology: [
+      "Architecture: 3-node LangGraph pipeline - Planner, Researcher, Synthesiser",
+      "State management: typed shared state via Python TypedDict across all nodes",
+      "Retrieval: dual per-subquery retrieval combining Tavily web search and ChromaDB RAG",
+      "Self-correction: confidence-based conditional retry edge that re-runs the Researcher node when synthesis confidence falls below 0.7",
+      "Human oversight: interrupt_before checkpoint with MemorySaver for human-in-the-loop review",
+      "Observability: per-node Langfuse spans plus token cost tracking across all LLM calls",
+      "Serving: FastAPI REST endpoint with UUID-per-request state isolation, Streamlit frontend showing live pipeline status",
+    ],
+    dataCleaning: null,
+    analysis: [
+      "The pipeline is structured as three distinct LangGraph nodes with a typed shared state (TypedDict) passed between them: a Planner that breaks the research question into subquestions, a Researcher that retrieves evidence per subquestion from both a live web search (Tavily) and a local ChromaDB RAG index, and a Synthesiser that combines everything into a final answer.",
+      "The distinguishing feature is a confidence-based conditional retry edge: when the Synthesiser's confidence in its own output falls below a 0.7 threshold, the graph automatically routes back to the Researcher node to gather more evidence before trying synthesis again - rather than simply returning a weak answer.",
+      "A human-in-the-loop checkpoint was implemented using LangGraph's interrupt_before mechanism with MemorySaver, allowing a human reviewer to pause and inspect the pipeline's state mid-run rather than only seeing the final output.",
+      "The system is fully observable: per-node Langfuse spans and token-cost tracking cover every LLM call in the pipeline, and it's served as a FastAPI REST endpoint with UUID-based state isolation per request, paired with a Streamlit frontend that shows live pipeline status as it runs.",
+    ],
+    findings: [
+      "A confidence-gated retry edge is a practical way to give a multi-agent pipeline a form of self-awareness about its own output quality, without needing a separate evaluation model.",
+      "Typed shared state (TypedDict) across LangGraph nodes made the multi-node pipeline substantially easier to reason about and debug than an untyped state dictionary would have been.",
+    ],
+    recommendations: null,
+    results:
+      "The result is a working multi-agent research pipeline with automated self-correction and human oversight built in from the start, served as both an API and an interactive frontend - the kind of production-shaped agentic system that goes beyond a single LangChain call. Code is available on GitHub.",
+    screenshots: [],
+  },
+
   // ==========================================================================
   // 7. Pakistan T20I Cricket Performance Analysis
   // ==========================================================================
@@ -664,114 +824,6 @@ export const projects = [
     ],
     results:
       "The simulation precisely quantified what had previously been informal strategy intuition: a ~1.7-point average score difference between the top two strategies, alongside a large and measurable gap in variance and ceiling outcome - turning 'play it safe vs. go for broke' into an actual, numbers-backed trade-off.",
-    screenshots: [],
-  },
-
-  // ==========================================================================
-  // 10. SafeDoc QA - RAG Pipeline with Guardrails (AI / LLM Engineering)
-  // ==========================================================================
-  {
-    slug: "safedoc-qa-rag-pipeline",
-    title: "SafeDoc QA - RAG Pipeline with Guardrails & Observability",
-    shortDescription:
-      "An end-to-end retrieval-augmented generation system built from scratch, with an LLM-as-judge guardrail architecture and full request-level tracing - going beyond a typical RAG demo to address grounding and safety directly.",
-    category: ["AI / LLM Engineering"],
-    tools: ["Python", "LangChain", "ChromaDB", "sentence-transformers", "FastAPI", "Langfuse", "Groq API"],
-    period: "May 2026",
-    context: "Independent project",
-    keyResult: "Full input/output guardrail architecture with per-request observability tracing",
-    thumbnail: "images/projects/safedocthumb.jpg",
-    links: {
-      github: "https://github.com/YousufQ9/safedoc-qa",
-      dashboard: null,
-      report: null,
-      dataset: null,
-    },
-    problem:
-      "Most RAG demos stop at 'retrieve chunks, ask an LLM.' This project asked a harder question: how do you build a document Q&A system where you can trust that (a) it won't answer questions it has no business answering, and (b) every answer it does give is actually grounded in the retrieved source material rather than hallucinated - and how do you make both of those properties observable, not just assumed?",
-    data: {
-      source: "User-uploaded PDF documents (system is document-agnostic by design)",
-      size: null,
-      variables: null,
-      limitations:
-        "As an infrastructure/systems project rather than a data analysis project, there is no dataset in the traditional sense - the 'data' is whatever PDF a user ingests at runtime.",
-    },
-    methodology: [
-      "Ingestion: PDF parsing with recursive character chunking",
-      "Embedding: local sentence-transformer embeddings (all-MiniLM-L6-v2) - no external embedding API dependency",
-      "Retrieval: ChromaDB vector store with Maximal Marginal Relevance (MMR) retrieval",
-      "Generation: grounding-constrained LLM chain using Groq's free-tier Llama 3.1",
-      "Guardrails: LLM-as-judge input rail (blocks off-topic/injected queries) + output rail (checks answer grounding against retrieved context)",
-      "Serving & observability: FastAPI endpoint with full Langfuse tracing (retrieval, prompt, tokens, latency per request)",
-    ],
-    dataCleaning: null,
-    analysis: [
-      "The retrieval layer uses local sentence-transformer embeddings rather than a paid embedding API, keeping the pipeline self-hostable, paired with ChromaDB and MMR retrieval specifically to reduce redundant near-duplicate chunks being returned for a single query.",
-      "The core design decision was building guardrails as two separate LLM-as-judge checks rather than one. An input rail evaluates each incoming query before retrieval even happens, blocking off-topic or prompt-injection attempts. A separate output rail then checks the generated answer against the retrieved context specifically for grounding - catching cases where the LLM's answer drifts from what the source documents actually support, independent of whether the input was legitimate.",
-      "Every request is traced through Langfuse at the span level - retrieval, prompt construction, token usage, and latency are all logged per request, which turns 'is this system behaving correctly' from a manual spot-check into something that can be monitored systematically.",
-    ],
-    findings: [
-      "Separating guardrails into an input-side relevance check and an output-side grounding check catches two genuinely different failure modes that a single combined check would likely miss.",
-      "Full per-request tracing (retrieval, prompt, tokens, latency) is straightforward to add with Langfuse and materially changes how debuggable a RAG system is in practice.",
-    ],
-    recommendations: null,
-    results:
-      "The system is a complete, working RAG pipeline with observable guardrails rather than a proof-of-concept notebook - it runs as a FastAPI service, is traced end-to-end, and specifically targets the grounding and safety gaps that typical RAG tutorials skip over. Code is available on GitHub.",
-    screenshots: [],
-  },
-
-  // ==========================================================================
-  // 11. AnalystAgent - Multi-Agent Research Assistant (AI / LLM Engineering)
-  // ==========================================================================
-  {
-    slug: "analyst-agent-multi-agent-research",
-    title: "AnalystAgent - Multi-Agent Research Assistant",
-    shortDescription:
-      "A 3-node LangGraph research pipeline (Planner → Researcher → Synthesiser) with confidence-based self-correction, human-in-the-loop checkpoints, and a live Streamlit frontend.",
-    category: ["AI / LLM Engineering"],
-    tools: ["Python", "LangGraph", "ChromaDB", "Tavily API", "FastAPI", "Langfuse", "Streamlit"],
-    period: "May 2026",
-    context: "Independent project",
-    keyResult: "Automated confidence-based retry loop when synthesis confidence falls below 0.7",
-    thumbnail: "images/projects/analystthumb.jpg",
-    links: {
-      github: "https://github.com/YousufQ9/analyst-agent",
-      dashboard: null,
-      report: null,
-      dataset: null,
-    },
-    problem:
-      "A single-shot LLM call to 'research and summarize a topic' has no way to notice when its own answer is weak, and no mechanism to try again with a different approach. This project set out to build a multi-agent pipeline that plans its own research, retrieves from two different sources, and - critically - can recognize low-confidence output and automatically retry before handing an answer to the user.",
-    data: {
-      source: "Dual retrieval at query time: live web search (Tavily API) + a ChromaDB RAG index",
-      size: null,
-      variables: null,
-      limitations:
-        "As an agentic systems project, output quality is bounded by the reliability of the underlying web search and LLM calls at query time rather than by a fixed, evaluable dataset.",
-    },
-    methodology: [
-      "Architecture: 3-node LangGraph pipeline - Planner, Researcher, Synthesiser",
-      "State management: typed shared state via Python TypedDict across all nodes",
-      "Retrieval: dual per-subquery retrieval combining Tavily web search and ChromaDB RAG",
-      "Self-correction: confidence-based conditional retry edge that re-runs the Researcher node when synthesis confidence falls below 0.7",
-      "Human oversight: interrupt_before checkpoint with MemorySaver for human-in-the-loop review",
-      "Observability: per-node Langfuse spans plus token cost tracking across all LLM calls",
-      "Serving: FastAPI REST endpoint with UUID-per-request state isolation, Streamlit frontend showing live pipeline status",
-    ],
-    dataCleaning: null,
-    analysis: [
-      "The pipeline is structured as three distinct LangGraph nodes with a typed shared state (TypedDict) passed between them: a Planner that breaks the research question into subquestions, a Researcher that retrieves evidence per subquestion from both a live web search (Tavily) and a local ChromaDB RAG index, and a Synthesiser that combines everything into a final answer.",
-      "The distinguishing feature is a confidence-based conditional retry edge: when the Synthesiser's confidence in its own output falls below a 0.7 threshold, the graph automatically routes back to the Researcher node to gather more evidence before trying synthesis again - rather than simply returning a weak answer.",
-      "A human-in-the-loop checkpoint was implemented using LangGraph's interrupt_before mechanism with MemorySaver, allowing a human reviewer to pause and inspect the pipeline's state mid-run rather than only seeing the final output.",
-      "The system is fully observable: per-node Langfuse spans and token-cost tracking cover every LLM call in the pipeline, and it's served as a FastAPI REST endpoint with UUID-based state isolation per request, paired with a Streamlit frontend that shows live pipeline status as it runs.",
-    ],
-    findings: [
-      "A confidence-gated retry edge is a practical way to give a multi-agent pipeline a form of self-awareness about its own output quality, without needing a separate evaluation model.",
-      "Typed shared state (TypedDict) across LangGraph nodes made the multi-node pipeline substantially easier to reason about and debug than an untyped state dictionary would have been.",
-    ],
-    recommendations: null,
-    results:
-      "The result is a working multi-agent research pipeline with automated self-correction and human oversight built in from the start, served as both an API and an interactive frontend - the kind of production-shaped agentic system that goes beyond a single LangChain call. Code is available on GitHub.",
     screenshots: [],
   },
 

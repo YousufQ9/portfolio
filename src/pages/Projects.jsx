@@ -16,7 +16,7 @@ export default function Projects() {
     <>
       <Seo
         title="Projects"
-        description="A collection of applied data analytics projects spanning time series forecasting, machine learning, NLP, business intelligence dashboards, and database systems — each with a full case study."
+        description="A collection of applied data analytics projects spanning time series forecasting, machine learning, NLP, business intelligence dashboards, and database systems - each with a full case study."
       />
 
       <section className="section page-header">
@@ -24,8 +24,8 @@ export default function Projects() {
           <p className="eyebrow">Portfolio</p>
           <h1>Projects</h1>
           <p className="page-header__sub">
-            Eleven projects spanning coursework, an NDA industry practicum, and independent builds.
-            Click any project to view the full case study — problem, data, methodology, findings, and results.
+            Various projects spanning freelance projects, an NDA industry practicum, and independent builds.
+            Click any project to view the full case study - problem, data, methodology, findings, and results.
           </p>
         </div>
       </section>

@@ -54,12 +54,14 @@ export const profile = {
 // HIGHLIGHTS — verified numbers only, shown as KPI-style stats on the homepage.
 // Every figure here is traceable to the source documents.
 // ----------------------------------------------------------------------------
-export const highlights = [
-  { value: "11", label: "Applied analytics projects", sublabel: "Forecasting, ML, NLP, BI & databases" },
-  { value: "3.83", label: "Graduate GPA", sublabel: "M.S. Analytics, Georgia Tech / 4.0" },
-  { value: "0.84", label: "Best model AUC", sublabel: "Lufthansa booking-signal classifier, NDA project" },
-  { value: "9", label: "Tools shipped end-to-end", sublabel: "SQL → Python → ML → Tableau / Power BI" },
-];
+// export const highlights = [
+//   { value: "11+", label: "Applied analytics projects", sublabel: "Forecasting, ML, NLP, BI & databases" },
+//   { value: "3.83", label: "Graduate GPA", sublabel: "M.S. Analytics, Georgia Tech / 4.0" },
+//   // { value: "0.84", label: "Best model AUC", sublabel: "Lufthansa booking-signal classifier, NDA project" },
+//   { value: "9", label: "Tools shipped end-to-end", sublabel: "SQL → Python → ML → Tableau / Power BI" },
+// ];
+
+export const highlights = [];
 
 // ----------------------------------------------------------------------------
 // SKILLS — grouped by category. Only tools with real, demonstrated evidence

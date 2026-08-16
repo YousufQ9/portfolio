@@ -72,19 +72,21 @@ export default function Home() {
       </section>
 
       {/* ============================== HIGHLIGHTS ============================== */}
-      <section className="section-tight highlights">
-        <div className="container">
-          <div className="highlights__grid">
-            {highlights.map((h) => (
-              <div className="highlights__item" key={h.label}>
-                <p className="highlights__value stat-value">{h.value}</p>
-                <p className="highlights__label">{h.label}</p>
-                <p className="highlights__sublabel">{h.sublabel}</p>
-              </div>
-            ))}
+      {highlights.length > 0 && (
+        <section className="section-tight highlights">
+          <div className="container">
+            <div className="highlights__grid">
+              {highlights.map((h) => (
+                <div className="highlights__item" key={h.label}>
+                  <p className="highlights__value stat-value">{h.value}</p>
+                  <p className="highlights__label">{h.label}</p>
+                  <p className="highlights__sublabel">{h.sublabel}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* ============================== SKILLS ============================== */}
       <section className="section skills-section">

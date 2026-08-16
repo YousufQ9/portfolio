@@ -10,7 +10,7 @@ export default function Experience() {
     <>
       <Seo
         title="Experience"
-        description="Work history spanning industry analytics practicums, freelance data analysis, and engineering estimation — with the tools and outcomes for each role."
+        description="Work history spanning industry analytics practicums, freelance data analysis, and engineering estimation - with the tools and outcomes for each role."
       />
 
       <section className="section page-header">
@@ -18,8 +18,8 @@ export default function Experience() {
           <p className="eyebrow">Background</p>
           <h1>Experience</h1>
           <p className="page-header__sub">
-            A mix of applied analytics work and four years in engineering estimation before the pivot —
-            which is part of why cost accuracy and checking assumptions shows up throughout the analytics work too.
+            Applied analytics work across freelance projects, an industry practicum, and coursework - 
+            building on four years in engineering estimation, where accuracy and checking assumptions weren't optional.
           </p>
         </div>
       </section>

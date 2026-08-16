@@ -103,6 +103,12 @@
   font-family: var(--font-mono);
 }
 
+.site-footer__phone {
+  color: rgba(243, 241, 234, 0.85);
+  font-size: var(--fs-small);
+  margin: 0;
+}
+
 @media (max-width: 760px) {
   .site-footer__top {
     grid-template-columns: 1fr;

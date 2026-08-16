@@ -15,7 +15,7 @@ export default function Footer() {
           <div className="site-footer__cta">
             <p className="eyebrow">Let's talk</p>
             <h2 className="site-footer__heading">
-              Working on something that needs a data analyst who checks their own work?
+              Let's talk about your data.
             </h2>
             <div className="site-footer__actions">
               <a href={`mailto:${profile.email}`} className="btn btn-primary">
@@ -39,6 +39,7 @@ export default function Footer() {
             <div className="site-footer__col">
               <p className="site-footer__col-title">Connect</p>
               <a href={`mailto:${profile.email}`}>{profile.email}</a>
+              <p className="site-footer__phone">Phone/WhatsApp: {profile.phone}</p>
               <a href={profile.linkedin} target="_blank" rel="noreferrer">
                 {profile.linkedinLabel}
               </a>
@@ -61,7 +62,7 @@ export default function Footer() {
         </div>
 
         <div className="site-footer__bottom">
-          <p>© {year} {profile.name}. Built from scratch, deployed on GitHub Pages.</p>
+          <p>© {year} {profile.name}. Deployed on GitHub Pages.</p>
         </div>
       </div>
     </footer>
