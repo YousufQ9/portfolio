@@ -170,30 +170,35 @@ export const certifications = [
   {
     name: "Data Analytics Job Simulation",
     issuer: "Deloitte (via Forage)",
-    date: "July 2026",
+    date: null,
     credentialId: null,
     verifyUrl: null,
+    // certificateUrl: "certificates/deloitte-data-analytics.pdf",
+    certificateUrl: "certificates/deloitte.pdf",
   },
   {
     name: "Microsoft Azure Essentials — Professional Certificate",
     issuer: "Microsoft & LinkedIn Learning",
-    date: "July 2026",
+    date: null,
     credentialId: null,
     verifyUrl: null,
+    certificateUrl: "certificates/Azure.pdf",
   },
   {
     name: "Career Essentials in GitHub — Professional Certificate",
     issuer: "GitHub & LinkedIn Learning",
-    date: "July 2026",
+    date: null,
     credentialId: null,
     verifyUrl: null,
+    certificateUrl: "certificates/Github.pdf",
   },
   {
     name: "Career Essentials in Generative AI",
     issuer: "Microsoft & LinkedIn Learning",
-    date: "July 2026",
+    date: null,
     credentialId: null,
     verifyUrl: null,
+    certificateUrl: "certificates/GenAI.pdf",
   },
   {
     name: "Practical GitHub Actions",
@@ -201,6 +206,7 @@ export const certifications = [
     date: null,
     credentialId: null,
     verifyUrl: null,
+    certificateUrl: null,
   },
   {
     name: "Learning Microsoft 365 Copilot for Work",
@@ -208,6 +214,7 @@ export const certifications = [
     date: null,
     credentialId: null,
     verifyUrl: null,
+    certificateUrl: null,
   },
   {
     name: "What Is Generative AI?",
@@ -215,6 +222,7 @@ export const certifications = [
     date: null,
     credentialId: null,
     verifyUrl: null,
+    certificateUrl: null,
   },
   {
     name: "Your Top AI Questions Answered: AI Literacy for Everyone",
@@ -222,5 +230,6 @@ export const certifications = [
     date: null,
     credentialId: null,
     verifyUrl: null,
+    certificateUrl: null,
   },
 ];

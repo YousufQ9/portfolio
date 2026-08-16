@@ -1,6 +1,7 @@
 import Seo from "../components/Seo";
 import { certifications } from "../data/profile";
 import "./Certifications.css";
+import { withBase } from "../utils/withBase";
 
 export default function Certifications() {
   return (
@@ -48,6 +49,11 @@ export default function Certifications() {
                   {cert.verifyUrl && (
                     <a href={cert.verifyUrl} target="_blank" rel="noreferrer" className="cert-card__verify">
                       Verify credential →
+                    </a>
+                  )}
+                  {cert.certificateUrl && (
+                    <a href={withBase(cert.certificateUrl)} target="_blank" rel="noreferrer" className="cert-card__verify">
+                      View certificate →
                     </a>
                   )}
                 </div>

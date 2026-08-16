@@ -190,69 +190,60 @@ export const projects = [
   },
 
   // ==========================================================================
-  // 3. Vehicle Supply & Demand - XGBoost + multi-framework time series
+  // 6. Stevie's Dog Sanctuary - Full-Stack Database Application
   // ==========================================================================
   {
-    slug: "vehicle-supply-demand",
-    title: "Passenger Vehicle Supply & Demand Analysis",
+    slug: "dog-sanctuary-database",
+    title: "Stevie's Dog Sanctuary - Full-Stack Database Application",
     shortDescription:
-      "Team-lead project benchmarking four forecasting frameworks against 25 years of U.S. automotive economic indicators, with a dedicated XGBoost model reaching 2.67% MAPE on vehicle sales.",
-    category: ["Time Series & Forecasting", "Machine Learning"],
-    tools: ["R", "XGBoost", "FRED Data", "Feature Engineering", "Time-Series Cross-Validation"],
-    period: "Fall 2025",
-    context: "ISYE 6402 - Time Series Analysis, Georgia Tech · 3-person team, team lead",
-    keyResult: "2.67% MAPE forecasting total vehicle sales over a 2-year holdout",
-    thumbnail:  "images/projects/vehiclesalesthumb.jpg",
+      "A complete database application lifecycle for a fictional dog rescue: ER modeling, relational schema design, and a working React + Django + MySQL app with role-based access and five executive reports.",
+    category: ["Database Systems"],
+    tools: ["MySQL", "SQL", "Django", "React", "ER Modeling", "Schema Design"],
+    period: "Spring 2025",
+    context: "CS 6400 - Database Systems Concepts and Design, Georgia Tech · Team project (Team 028)",
+    keyResult: "Full CRUD application with role-based access control and 5 executive reports",
+    thumbnail: "images/projects/dbthumb.jpg",
     links: {
-      github: null,
+      github: "https://github.com/YousufQ9/database_stevies_dog_sanctuary",
       dashboard: null,
-      report: "reports/Vehiclereport.pdf",
+      report: null,
       dataset: null,
     },
     problem:
-      "The U.S. passenger vehicle market is shaped by a tangle of supply and demand indicators - production, transit ridership, gas prices, new orders - that shift in relative importance over time, especially through the pandemic-era volatility of 2020–2022. The project set out to build and benchmark a multi-framework forecasting system across four key indicators rather than relying on a single model type.",
+      "A fictional dog rescue organization needed a system to manage its full operational lifecycle - intake, expenses, adoptions, volunteer management, and reporting - with two distinct user roles that required different levels of access, and business rules (tiered adoption fees, editability restrictions, duplicate-expense prevention) complex enough to require careful schema design rather than an off-the-shelf tool.",
     data: {
-      source: "Federal Reserve Bank of St. Louis (FRED)",
-      size: "11 monthly economic time series, Jan 2000 – Dec 2024 (292 observations per series)",
+      source: "Application-managed relational data (dogs, expenses, adoptions, volunteers) - not an external dataset, since this was a from-scratch application build",
+      size: null,
       variables: [
-        "Vehicle Miles Traveled (VMT)",
-        "Manufacturer's New Orders (AMVPNO)",
-        "Public Transit Ridership (TRANSIT)",
-        "Total Vehicle Sales (TOTALSA)",
-        "Domestic/foreign vehicle sales, production, exports, gas prices, natural gas consumption, inventory-to-sales ratios",
+        "Dog records (breed, sex, age, adoptability status, alteration/microchip status)",
+        "Expense records (vendor, date, amount, dog)",
+        "Adoption applications and approvals",
+        "Volunteer and Executive Director accounts",
       ],
-      limitations:
-        "The pandemic period introduced sharp structural breaks in vehicle sales and supply chains that are difficult for any single time-series model to capture cleanly, which is part of why the project benchmarked multiple modeling frameworks rather than committing to one.",
+      limitations: null,
     },
     methodology: [
-      "Business question: which forecasting approach best captures U.S. vehicle supply/demand dynamics?",
-      "Data collection: 11 monthly series from FRED, 2000–2024",
-      "Preprocessing: Z-score normalization, Box-Cox transforms, ADF stationarity testing, first-order differencing",
-      "Correlation analysis: post-transformation correlation matrix to guide variable selection",
-      "Modeling: four benchmarked frameworks, including a dedicated XGBoost model for total vehicle sales",
-      "Feature engineering: autoregressive lags, exogenous lags, calendar features, YoY growth",
-      "Tuning: grid search with time-series cross-validation and early stopping",
-      "Evaluation: RMSE, MAE, MAPE on a 2-year holdout; feature importance via gain/cover/frequency",
+      "Requirements analysis for two user roles: Volunteer and Executive Director",
+      "Entity-relationship modeling and relational schema design",
+      "Business rule encoding directly into the schema (tiered fees, editability constraints, duplicate prevention)",
+      "Full-stack implementation: React frontend, Django backend, MySQL database",
+      "Role-based access control via session-validated permissions at the application and query level",
+      "Five executive-only reports with SQL joins, grouping, and drill-down detail views",
     ],
-    dataCleaning:
-      "All 11 series were normalized using Z-scores to allow comparative visualization on a single scale. Box-Cox transformations addressed skewness, and Augmented Dickey-Fuller (ADF) tests confirmed non-stationarity across most series, which required first-order differencing before modeling. A post-transformation correlation matrix was built specifically on the differenced (rate-of-change) series to identify genuine linear relationships rather than ones inflated by shared trend.",
+    dataCleaning: null,
     analysis: [
-      "Because Total Vehicle Sales (TOTALSA) is both the most economically important series and the most affected by pandemic-era volatility, it received a dedicated modeling framework: an XGBoost regressor rather than a classical time-series model, to better capture non-linear interactions between predictors.",
-      "Feature engineering was extensive: autoregressive lags of TOTALSA itself at 1, 2, 3, 6, and 12 months; lagged values of all exogenous indicators at 1, 3, and 6 months; calendar features (month, quarter); and a year-over-year sales growth variable.",
-      "Hyperparameters were tuned via grid search with time-series cross-validation and early stopping, converging on a learning rate of 0.05, max depth of 3, and 546 boosting rounds.",
-      "Feature importance analysis (by gain) showed the 1-month lag of TOTALSA itself accounted for 77.7% of total model gain - confirming vehicle sales are strongly autoregressive month-to-month - while manufacturer new orders, gas prices, and production metrics contributed smaller but meaningful secondary signal.",
+      "The data model had to encode a surprising amount of real-world business logic directly into the schema: a configurable sanctuary capacity, conditional editability (breed only updatable from Unknown/Mixed, sex only if Unknown, alteration/microchip status only before adoption), duplicate-expense prevention per vendor per date per dog, and a tiered adoption fee calculation - 125% of recorded expenses for standard dogs, 10% for rescue-network surrenders, with a special waiver condition for Pointer-breed dogs named Stevie or Stephanie. Multi-breed dogs were stored relationally and dynamically concatenated into alphabetically ordered, slash-separated strings for display.",
+      "Role-based access control was implemented via session variables set at login and validated against the database on every sensitive operation - not just hidden in the UI, but enforced at the query level so a Volunteer account genuinely could not perform Executive Director actions even with a modified request.",
+      "The full CRUD interface included a filterable Dog Dashboard (breed, sex, age range, adoptability), an Add Dog form with dynamic dropdowns populated from database-managed lookup tables, a Dog Detail screen with grouped/totalled expenses, a duplicate-validated Add Expense form, and a complete adoption workflow from last-name search through fee-calculation confirmation.",
+      "Five reports were built exclusively for the Executive Director role: a rolling 7-month Rescue Network Report with clickable drill-downs, a 12-month Monthly Adoption Report broken down by breed (covering surrenders, adoptions, expenses, fees, and net profit), an Expense Analysis report aggregating spend by vendor, a case-insensitive Volunteer Lookup, and a Volunteer Anniversaries report that flags milestone years.",
     ],
     findings: [
-      "The tuned XGBoost model achieved a test RMSE of 0.54, MAE of 0.42, and MAPE of 2.67% over a 2-year holdout - strong accuracy for a macroeconomic series marked by pandemic-era structural breaks.",
-      "Vehicle sales are dominated by their own recent momentum: the 1-month lag alone explained 77.7% of the model's total predictive gain.",
-      "Manufacturer new orders, gas prices, and production metrics added real but secondary predictive value beyond the autoregressive signal.",
+      "Encoding business rules (tiered fees, conditional editability, duplicate prevention) directly into the schema and application layer - rather than leaving them as unenforced conventions - proved essential to making the reports and workflows trustworthy.",
+      "Session-validated, query-level access control (rather than UI-only role gating) was necessary to make the Executive Director/Volunteer separation actually secure.",
     ],
-    recommendations: [
-      "For short-horizon vehicle-sales forecasting, prioritize recent-lag features over longer exogenous indicators, given how dominant the 1-month autoregressive signal proved to be.",
-      "Continue monitoring gas prices and manufacturer new orders as secondary indicators, since they contributed measurable - if smaller - predictive value on top of the autoregressive baseline.",
-    ],
+    recommendations: null,
     results:
-      "The dedicated XGBoost framework for Total Vehicle Sales reached 2.67% MAPE on a genuine 2-year holdout period, a strong result for a series this exposed to macroeconomic shocks, and the feature importance analysis produced a clear, actionable takeaway about which indicators actually drive short-term forecasting accuracy versus which are secondary.",
+      "The result was a fully working full-stack application - not a mockup - covering the complete lifecycle from ER modeling through a deployed React/Django/MySQL system with role-based access, five executive reports, and complex business rules enforced at the database level. This was a database design and implementation exercise rather than a live business, so there are no adoption or revenue figures to report; the demonstrated outcome is the working system itself.",
     screenshots: [],
   },
 
@@ -324,6 +315,75 @@ export const projects = [
   },
 
   // ==========================================================================
+  // 3. Vehicle Supply & Demand - XGBoost + multi-framework time series
+  // ==========================================================================
+  {
+    slug: "vehicle-supply-demand",
+    title: "Passenger Vehicle Supply & Demand Analysis",
+    shortDescription:
+      "Team-lead project benchmarking four forecasting frameworks against 25 years of U.S. automotive economic indicators, with a dedicated XGBoost model reaching 2.67% MAPE on vehicle sales.",
+    category: ["Time Series & Forecasting", "Machine Learning"],
+    tools: ["R", "XGBoost", "FRED Data", "Feature Engineering", "Time-Series Cross-Validation"],
+    period: "Fall 2025",
+    context: "ISYE 6402 - Time Series Analysis, Georgia Tech · 3-person team, team lead",
+    keyResult: "2.67% MAPE forecasting total vehicle sales over a 2-year holdout",
+    thumbnail:  "images/projects/vehiclesalesthumb.jpg",
+    links: {
+      github: "https://github.com/YousufQ9/vehicle-supply-demand-forecasting",
+      dashboard: null,
+      report: "reports/Vehiclereport.pdf",
+      dataset: null,
+    },
+    problem:
+      "The U.S. passenger vehicle market is shaped by a tangle of supply and demand indicators - production, transit ridership, gas prices, new orders - that shift in relative importance over time, especially through the pandemic-era volatility of 2020–2022. The project set out to build and benchmark a multi-framework forecasting system across four key indicators rather than relying on a single model type.",
+    data: {
+      source: "Federal Reserve Bank of St. Louis (FRED)",
+      size: "11 monthly economic time series, Jan 2000 – Dec 2024 (292 observations per series)",
+      variables: [
+        "Vehicle Miles Traveled (VMT)",
+        "Manufacturer's New Orders (AMVPNO)",
+        "Public Transit Ridership (TRANSIT)",
+        "Total Vehicle Sales (TOTALSA)",
+        "Domestic/foreign vehicle sales, production, exports, gas prices, natural gas consumption, inventory-to-sales ratios",
+      ],
+      limitations:
+        "The pandemic period introduced sharp structural breaks in vehicle sales and supply chains that are difficult for any single time-series model to capture cleanly, which is part of why the project benchmarked multiple modeling frameworks rather than committing to one.",
+    },
+    methodology: [
+      "Business question: which forecasting approach best captures U.S. vehicle supply/demand dynamics?",
+      "Data collection: 11 monthly series from FRED, 2000–2024",
+      "Preprocessing: Z-score normalization, Box-Cox transforms, ADF stationarity testing, first-order differencing",
+      "Correlation analysis: post-transformation correlation matrix to guide variable selection",
+      "Modeling: four benchmarked frameworks, including a dedicated XGBoost model for total vehicle sales",
+      "Feature engineering: autoregressive lags, exogenous lags, calendar features, YoY growth",
+      "Tuning: grid search with time-series cross-validation and early stopping",
+      "Evaluation: RMSE, MAE, MAPE on a 2-year holdout; feature importance via gain/cover/frequency",
+    ],
+    dataCleaning:
+      "All 11 series were normalized using Z-scores to allow comparative visualization on a single scale. Box-Cox transformations addressed skewness, and Augmented Dickey-Fuller (ADF) tests confirmed non-stationarity across most series, which required first-order differencing before modeling. A post-transformation correlation matrix was built specifically on the differenced (rate-of-change) series to identify genuine linear relationships rather than ones inflated by shared trend.",
+    analysis: [
+      "Because Total Vehicle Sales (TOTALSA) is both the most economically important series and the most affected by pandemic-era volatility, it received a dedicated modeling framework: an XGBoost regressor rather than a classical time-series model, to better capture non-linear interactions between predictors.",
+      "Feature engineering was extensive: autoregressive lags of TOTALSA itself at 1, 2, 3, 6, and 12 months; lagged values of all exogenous indicators at 1, 3, and 6 months; calendar features (month, quarter); and a year-over-year sales growth variable.",
+      "Hyperparameters were tuned via grid search with time-series cross-validation and early stopping, converging on a learning rate of 0.05, max depth of 3, and 546 boosting rounds.",
+      "Feature importance analysis (by gain) showed the 1-month lag of TOTALSA itself accounted for 77.7% of total model gain - confirming vehicle sales are strongly autoregressive month-to-month - while manufacturer new orders, gas prices, and production metrics contributed smaller but meaningful secondary signal.",
+    ],
+    findings: [
+      "The tuned XGBoost model achieved a test RMSE of 0.54, MAE of 0.42, and MAPE of 2.67% over a 2-year holdout - strong accuracy for a macroeconomic series marked by pandemic-era structural breaks.",
+      "Vehicle sales are dominated by their own recent momentum: the 1-month lag alone explained 77.7% of the model's total predictive gain.",
+      "Manufacturer new orders, gas prices, and production metrics added real but secondary predictive value beyond the autoregressive signal.",
+    ],
+    recommendations: [
+      "For short-horizon vehicle-sales forecasting, prioritize recent-lag features over longer exogenous indicators, given how dominant the 1-month autoregressive signal proved to be.",
+      "Continue monitoring gas prices and manufacturer new orders as secondary indicators, since they contributed measurable - if smaller - predictive value on top of the autoregressive baseline.",
+    ],
+    results:
+      "The dedicated XGBoost framework for Total Vehicle Sales reached 2.67% MAPE on a genuine 2-year holdout period, a strong result for a series this exposed to macroeconomic shocks, and the feature importance analysis produced a clear, actionable takeaway about which indicators actually drive short-term forecasting accuracy versus which are secondary.",
+    screenshots: [],
+  },
+
+  
+
+  // ==========================================================================
   // 5. Café Sales Forecasting & Payment Classification
   // ==========================================================================
   {
@@ -338,7 +398,7 @@ export const projects = [
     keyResult: "ARIMA forecast MAE of 1.24% (RMSE 1.40%) on monthly café sales",
     thumbnail:  "images/projects/cafesalesthumb.jpg",
     links: {
-      github: null,
+      github: "https://github.com/YousufQ9/Cafe-Sales-Analysis",
       dashboard: null,
       report: "reports/cafesalesreport.pdf",
       dataset: "Kaggle café sales dataset",
@@ -381,60 +441,117 @@ export const projects = [
   },
 
   // ==========================================================================
-  // 6. Stevie's Dog Sanctuary - Full-Stack Database Application
+  // 12. Padel Tracker - Streamlit Analytics Dashboard
   // ==========================================================================
   {
-    slug: "dog-sanctuary-database",
-    title: "Stevie's Dog Sanctuary - Full-Stack Database Application",
+    slug: "padel-tracker",
+    title: "Padel Tracker - Personal Game Analytics Dashboard",
     shortDescription:
-      "A complete database application lifecycle for a fictional dog rescue: ER modeling, relational schema design, and a working React + Django + MySQL app with role-based access and five executive reports.",
-    category: ["Database Systems"],
-    tools: ["MySQL", "SQL", "Django", "React", "ER Modeling", "Schema Design"],
-    period: "Spring 2025",
-    context: "CS 6400 - Database Systems Concepts and Design, Georgia Tech · Team project (Team 028)",
-    keyResult: "Full CRUD application with role-based access control and 5 executive reports",
-    thumbnail: "images/projects/dbthumb.jpg",
+      "A Streamlit dashboard built on a personal padel game log: cleans a messy Excel file, surfaces win/partner/location/cost analytics, and includes a logistic-regression win predictor for any given matchup.",
+    category: ["Machine Learning", "Business Intelligence"],
+    tools: ["Python", "Streamlit", "pandas", "scikit-learn", "Logistic Regression"],
+    period: "2026",
+    context: "Independent project",
+    keyResult: "Automatic format-aware score parsing across mixed race-to-4/6/24-point games",
+    thumbnail: "images/projects/padelthumb.jpg",
     links: {
-      github: "https://github.com/YousufQ9/database_stevies_dog_sanctuary",
+      github: "https://github.com/YousufQ9/PadelGames",
       dashboard: null,
       report: null,
       dataset: null,
     },
     problem:
-      "A fictional dog rescue organization needed a system to manage its full operational lifecycle - intake, expenses, adoptions, volunteer management, and reporting - with two distinct user roles that required different levels of access, and business rules (tiered adoption fees, editability restrictions, duplicate-expense prevention) complex enough to require careful schema design rather than an off-the-shelf tool.",
+      "A personal padel game log kept in Excel had grown into a genuinely messy dataset - inconsistent location naming, dates in mixed formats, missing costs on rows that weren't the first game of the day - that made it hard to answer simple questions like which partners win the most together, which locations are toughest, or whether cost per session was creeping up. The project set out to turn that raw log into a self-serve analytics dashboard, plus a lightweight model to predict the outcome of a hypothetical matchup.",
     data: {
-      source: "Application-managed relational data (dogs, expenses, adoptions, volunteers) - not an external dataset, since this was a from-scratch application build",
+      source: "Personally logged padel game data, maintained as an Excel file (Padel_Data.xlsx)",
       size: null,
-      variables: [
-        "Dog records (breed, sex, age, adoptability status, alteration/microchip status)",
-        "Expense records (vendor, date, amount, dog)",
-        "Adoption applications and approvals",
-        "Volunteer and Executive Director accounts",
-      ],
-      limitations: null,
+      variables: ["Date", "Score", "Game outcome (Won/Lost/Draw)", "Partner", "Opponent 1", "Opponent 2", "Cost", "Location"],
+      limitations:
+        "The dataset is entirely self-reported and grows only as games are played, so some partner/opponent combinations have very few recorded games - the win predictor is explicitly weaker for those under-represented matchups.",
     },
     methodology: [
-      "Requirements analysis for two user roles: Volunteer and Executive Director",
-      "Entity-relationship modeling and relational schema design",
-      "Business rule encoding directly into the schema (tiered fees, editability constraints, duplicate prevention)",
-      "Full-stack implementation: React frontend, Django backend, MySQL database",
-      "Role-based access control via session-validated permissions at the application and query level",
-      "Five executive-only reports with SQL joins, grouping, and drill-down detail views",
+      "Data cleaning: drop rows with no logged result, forward-fill location and cost by session date, normalize player/location name casing and whitespace",
+      "Date parsing: handle both native Excel date cells and typed dd/mm/yyyy text robustly",
+      "Overview analytics: win/loss/draw record, top partners, locations played, cost per month",
+      "Trend analysis: win % by location, toughest opponents, rolling win % over the last N games",
+      "Score parsing: detect each game's scoring format (race-to-4, race-to-6, 24-point) and normalize margin as % of total points contested",
+      "Modeling: logistic regression on Partner / Opponent 1 / Opponent 2 / Location to predict a hypothetical matchup",
+      "Interface: Streamlit app with dropdowns populated directly from the underlying data, auto-reloading when the source file changes",
     ],
-    dataCleaning: null,
+    dataCleaning:
+      "Rows with no logged game result were dropped from game-level stats (though session-only rows - a booked court with no game played - still count toward monthly cost and location-visit totals). Location and Cost were only recorded on the first row of each date in the source file, so both are forward-filled per session date rather than globally, which matters because a global forward-fill would incorrectly carry a value across different dates. Player and location names were normalized for case and whitespace so that inconsistent entries like 'CenterPoint' and 'Centerpoint' are correctly treated as the same location. Dates were parsed to handle both native Excel date cells and manually typed dd/mm/yyyy text, since the log was filled in inconsistently over time.",
     analysis: [
-      "The data model had to encode a surprising amount of real-world business logic directly into the schema: a configurable sanctuary capacity, conditional editability (breed only updatable from Unknown/Mixed, sex only if Unknown, alteration/microchip status only before adoption), duplicate-expense prevention per vendor per date per dog, and a tiered adoption fee calculation - 125% of recorded expenses for standard dogs, 10% for rescue-network surrenders, with a special waiver condition for Pointer-breed dogs named Stevie or Stephanie. Multi-breed dogs were stored relationally and dynamically concatenated into alphabetically ordered, slash-separated strings for display.",
-      "Role-based access control was implemented via session variables set at login and validated against the database on every sensitive operation - not just hidden in the UI, but enforced at the query level so a Volunteer account genuinely could not perform Executive Director actions even with a modified request.",
-      "The full CRUD interface included a filterable Dog Dashboard (breed, sex, age range, adoptability), an Add Dog form with dynamic dropdowns populated from database-managed lookup tables, a Dog Detail screen with grouped/totalled expenses, a duplicate-validated Add Expense form, and a complete adoption workflow from last-name search through fee-calculation confirmation.",
-      "Five reports were built exclusively for the Executive Director role: a rolling 7-month Rescue Network Report with clickable drill-downs, a 12-month Monthly Adoption Report broken down by breed (covering surrenders, adoptions, expenses, fees, and net profit), an Expense Analysis report aggregating spend by vendor, a case-insensitive Volunteer Lookup, and a Volunteer Anniversaries report that flags milestone years.",
+      "A recurring data-quality problem was that games in the log weren't all played to the same target score - some were race-to-4, others race-to-6, others a fixed 24-point total - which makes a raw point-margin number meaningless for comparing 'biggest win' or 'closest game' across different game formats. The app detects each game's format from its score string and converts margin into a percentage of total points contested, making margin comparable across every format in the dataset.",
+      "The overview layer surfaces the fundamentals: overall win/loss/draw record and win %, top partners by win % (with a minimum-games filter to avoid small-sample noise), unique locations played, and days played and cost per month.",
+      "A trends layer goes further: win % broken down by location, toughest opponents ranked by win % against them specifically, and a rolling win % over the last N games to surface current form rather than just career-long averages.",
+      "The win predictor is a logistic regression trained on categorical matchup data (Partner, Opponent 1, Opponent 2, Location), with dropdowns in the UI populated directly from the player's own historical data rather than free text, so every prediction request is guaranteed to be answerable from data the model has actually seen.",
     ],
     findings: [
-      "Encoding business rules (tiered fees, conditional editability, duplicate prevention) directly into the schema and application layer - rather than leaving them as unenforced conventions - proved essential to making the reports and workflows trustworthy.",
-      "Session-validated, query-level access control (rather than UI-only role gating) was necessary to make the Executive Director/Volunteer separation actually secure.",
+      "Score margin is not comparable across differently-formatted games without normalization - a naive 'biggest win' metric on raw points would have been misleading given the mix of race-to-4, race-to-6, and 24-point games in the log.",
+      "Forward-filling Cost and Location needed to be done per session date rather than globally, since a global forward-fill silently carries values across unrelated dates.",
     ],
     recommendations: null,
     results:
-      "The result was a fully working full-stack application - not a mockup - covering the complete lifecycle from ER modeling through a deployed React/Django/MySQL system with role-based access, five executive reports, and complex business rules enforced at the database level. This was a database design and implementation exercise rather than a live business, so there are no adoption or revenue figures to report; the demonstrated outcome is the working system itself.",
+      "The dashboard turns a previously hard-to-query Excel log into a self-serve analytics tool covering win rates, partner/opponent performance, location trends, and cost tracking, plus a functioning (if intentionally simple) win predictor. The model is explicitly framed as directional rather than statistically rigorous - a deliberate, honest limitation given how few games some matchups have, rather than an oversight.",
+    screenshots: [],
+  },
+
+  // ==========================================================================
+  // 13. Text-to-SQL Research - Improving OmniSQL-7B (in progress)
+  // ==========================================================================
+  {
+    slug: "text-to-sql-omnisql-research",
+    title: "Text-to-SQL Research: Improving OmniSQL-7B",
+    shortDescription:
+      "An ongoing research project pushing OmniSQL-7B's Text-to-SQL execution accuracy on the Spider benchmark closer to its published target, through schema linking, prompt engineering, and fine-tuning - entirely on free Kaggle GPUs.",
+    category: ["Machine Learning", "NLP"],
+    tools: ["Python", "PyTorch", "OmniSQL-7B", "LoRA / DPO", "GRPO", "Sentence Transformers", "SQLite"],
+    period: "2026 - in progress",
+    context: "Independent research project · Currently in progress (fine-tuning phase)",
+    keyResult: "75.3% execution accuracy on Spider dev, up from a 70.4% baseline - 5.9 points from the published paper's 81.2% target",
+    thumbnail: null,
+    links: {
+      github: "https://github.com/YousufQ9/omnisql-research",
+      dashboard: null,
+      report: null,
+      dataset: null,
+    },
+    problem:
+      "OmniSQL-7B is a strong open-source Text-to-SQL model (VLDB 2025) with a published 81.2% execution accuracy on the Spider benchmark. This project investigates whether that accuracy can be reached or approached using only free-tier compute (Kaggle's T4 GPUs, no paid services), testing prompt engineering, schema linking, majority voting, and fine-tuning as separate levers and measuring what actually moves the needle versus what doesn't.",
+    data: {
+      source: "Spider benchmark (xlangai/spider on HuggingFace) and BIRD mini-dev (birdsql/bird_mini_dev), with 166 SQLite databases hosted as a companion Kaggle dataset",
+      size: "Spider: 7,000 training examples, 1,034 validation examples; BIRD mini-dev not yet evaluated",
+      variables: ["Natural language question", "Database schema (tables, columns, foreign keys)", "Gold SQL query", "Predicted SQL query"],
+      limitations:
+        "All experiments are constrained to free Kaggle T4 GPU compute, which limits fine-tuning scale (LoRA DPO was trained on only 227 preference pairs) and rules out larger-scale reinforcement learning runs.",
+    },
+    methodology: [
+      "Phase 1 - Baseline: zero-shot OmniSQL-7B with greedy decoding, established a 70.4% execution accuracy baseline (with real CREATE TABLE schemas)",
+      "Phase 2 - Schema linking: keyword + sentence-transformer embedding-based table/column selection, tested at multiple top-k thresholds",
+      "Phase 3 - Binary selection: run inference on both full and schema-linked prompts, execute both SQL outputs against SQLite, and keep whichever returns valid rows",
+      "Phase 4 - Prompt & schema engineering: matched OmniSQL's exact published prompt format and built schema strings directly from SQLite PRAGMA calls instead of a third-party schema dataset",
+      "Phase 5 - Fine-tuning (in progress): LoRA DPO on preference pairs from binary-selection failures, and GRPO reinforcement learning with live execution-correctness as the reward signal",
+    ],
+    dataCleaning: null,
+    analysis: [
+      "Execution accuracy (not exact-match) is used throughout as the evaluation metric - predicted and gold SQL are both actually run against the real SQLite databases and their result sets compared, which is a stricter and more meaningful test than comparing query text.",
+      "Schema linking, intuitively the most promising lever, actually hurt accuracy on its own (63.5–65.6% vs. the 70.4% full-schema baseline) - embedding-only scoring on GPU-constrained hardware wasn't reliable enough, and keyword-only linking was more stable but still filtered out tables the model needed for complex queries. It was ultimately kept only as one candidate inside binary selection, not as a standalone filtering step.",
+      "Binary selection - generating from both the full schema and the schema-linked version, executing both, and keeping whichever actually returns results - was the single largest accuracy gain in the project, taking the baseline from 70.4% to 74.3%.",
+      "The next gain came from a detail that's easy to overlook: switching to OmniSQL's exact published prompt template and building schema text directly from SQLite's own PRAGMA introspection (rather than a third-party pre-formatted schema dataset) added another point, reaching the current best of 75.3%.",
+      "Both DPO fine-tuning and majority voting were tested and both made results worse, not better - DPO overfit visibly on only 227 preference pairs (dropping to 63.2%), and majority voting at N=3 was too few samples to reliably outvote a wrong answer (68.7%). Both findings are as useful as a positive result: they show which techniques don't pay off at this compute scale, rather than leaving that untested.",
+    ],
+    findings: [
+      "The largest single gain (+3.9 points) came from binary selection - running two inference passes and using actual SQL execution against the database to pick between them - not from any single modeling technique in isolation.",
+      "Schema linking, despite being a standard technique in Text-to-SQL research, actively hurt accuracy when applied with embedding-only scoring on constrained hardware, and needed to be combined with binary selection rather than used alone.",
+      "Both fine-tuning approaches tested so far (DPO, majority voting) underperformed the non-fine-tuned pipeline, most likely due to the small scale of available free-tier compute rather than a flaw in the techniques themselves.",
+      "Performance is not uniform across databases - the three worst-performing databases (car_1, wta_1, world_1) are all large, join-heavy schemas, suggesting schema complexity remains the main bottleneck rather than query language complexity.",
+    ],
+    recommendations: [
+      "Continue the in-progress GRPO reinforcement-learning run, since it uses live execution correctness as a direct reward signal rather than a fixed preference dataset, and may generalize better than the DPO approach did on limited data.",
+      "Prioritize further schema-side improvements (e.g. better handling of large, join-heavy databases) over additional prompt-level tweaks, given that the worst-performing databases are consistently the most schema-complex ones.",
+    ],
+    results:
+      "Current best execution accuracy is 75.3% on the Spider validation set, up from a 70.4% zero-shot baseline, against a published paper target of 81.2% - a 5.9-point gap that the project is actively working to close. This project is ongoing; the GRPO reinforcement-learning phase is in progress and BIRD benchmark evaluation has not yet been run.",
     screenshots: [],
   },
 
@@ -510,7 +627,7 @@ export const projects = [
     keyResult: "Greedy strategy: 157.86 avg score (SD 53.55) vs. Random: 45.98 avg, across 100,000 simulated games",
     thumbnail:  "images/projects/yahtzeethumb.jpg",
     links: {
-      github: null,
+      github: "https://github.com/YousufQ9/Single-Player-Yahtzee-Simulation",
       dashboard: null,
       report: "reports/Yahtzeereport.pdf",
       dataset: null,
