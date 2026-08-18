@@ -1,6 +1,11 @@
 /* ============================== HERO ============================== */
-.hero {
+/* .hero {
   padding: var(--space-9) 0 var(--space-8);
+  overflow: hidden;
+} */
+
+.hero {
+  padding: var(--space-6) 0 var(--space-8);
   overflow: hidden;
 }
 

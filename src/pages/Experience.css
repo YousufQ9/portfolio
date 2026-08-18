@@ -1,4 +1,9 @@
+/* .page-header {
+  padding-bottom: var(--space-6);
+} */
+
 .page-header {
+  padding-top: var(--space-6);
   padding-bottom: var(--space-6);
 }
 
@@ -199,6 +204,34 @@
   color: var(--color-ink-soft);
   margin: 0;
   white-space: nowrap;
+}
+
+
+.earlier-experience__highlights {
+  list-style: none;
+  margin: var(--space-3) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.earlier-experience__highlights li {
+  padding-left: var(--space-4);
+  position: relative;
+  font-size: var(--fs-small);
+  color: var(--color-ink-soft);
+}
+
+.earlier-experience__highlights li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-accent);
 }
 
 /* ============================== EDUCATION ============================== */

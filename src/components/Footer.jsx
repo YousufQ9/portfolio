@@ -39,7 +39,7 @@ export default function Footer() {
             <div className="site-footer__col">
               <p className="site-footer__col-title">Connect</p>
               <a href={`mailto:${profile.email}`}>{profile.email}</a>
-              <p className="site-footer__phone">Phone/WhatsApp: {profile.phone}</p>
+              <p className="site-footer__phone">Phone/WhatsApp:<br />{profile.phone}</p>
               <a href={profile.linkedin} target="_blank" rel="noreferrer">
                 {profile.linkedinLabel}
               </a>

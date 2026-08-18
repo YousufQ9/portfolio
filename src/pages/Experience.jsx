@@ -84,10 +84,20 @@ export default function Experience() {
                 {earlierExperience.map((job, i) => (
                   <div className="earlier-experience__item" key={i}>
                     <div>
-                      <p className="earlier-experience__role">{job.role}</p>
+                      <div className="earlier-experience__header">
+                        <p className="earlier-experience__role">{job.role}</p>
+                        {/* <p className="earlier-experience__dates earlier-experience__dates--mobile">{job.dates}</p> */}
+                      </div>
                       <p className="earlier-experience__org">
                         {job.organization} {job.location && `· ${job.location}`}
                       </p>
+                      {job.highlights && job.highlights.length > 0 && (
+                        <ul className="earlier-experience__highlights">
+                          {job.highlights.map((h, hi) => (
+                            <li key={hi}>{h}</li>
+                          ))}
+                        </ul>
+                      )}
                     </div>
                     <p className="earlier-experience__dates">{job.dates}</p>
                   </div>
